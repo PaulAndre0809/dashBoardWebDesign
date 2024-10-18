@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css"> <!-- Link to the CSS file -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js library -->
+    <style>
+        /* Basic styling for sidebar */
+        body {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            transition: left 0.3s ease;
+            left: 0; /* Sidebar starts visible */
+        }
+
+        .sidebar.hidden {
+            left: -250px; /* Hide the sidebar */
+        }
+
+        .main-content {
+            margin-left: 250px; /* Space for sidebar */
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .toggle-btn {
+            margin: 10px;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .card {
+            background-color: #f0f2f5;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="settings.html">Settings</a></li>
+        </ul>
+        
+        <a href="logout.html" class="logout-button">Logout</a>
+    </aside>
+
+    <main class="main-content">
+        <header>
+            <h1>Welcome Back, User!</h1>
+        </header>
+
+        <section class="analytics">
+            <h2>Analytics Overview</h2>
+            <div class="analytics-cards">
+                <div class="card">
+                    <h3>Total Users</h3>
+                    <p>150</p>
+                </div>
+                <div class="card">
+                    <h3>Active Users</h3>
+                    <p>75</p>
+                </div>
+                <div class="card">
+                    <h3>New Signups</h3>
+                    <p>30</p>
+                </div>
+            </div>
+            
+            <canvas id="userChart" width="400" height="200"></canvas> <!-- Chart Placeholder -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+     
+
+        // Chart.js script to create a bar chart
+        const ctx = document.getElementById('userChart').getContext('2d');
+        const userChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                datasets: [{
+                    label: 'New Signups',
+                    data: [10, 20, 15, 25, 30, 18],
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
